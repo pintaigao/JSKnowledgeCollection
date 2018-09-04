@@ -3,8 +3,9 @@
 据说阿里有一道面试题就是谈谈**函数节流**和**函数防抖**。 糟了，这可触碰到我的知识盲区了，好像听也没听过这2个东西，痛定思痛，赶紧学习学习。here we go！
 
 
-
+<p align="center">
 ![15341407332107](https://user-gold-cdn.xitu.io/2018/9/4/165a252b4b69aab5?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+ </p>
 
 
 
