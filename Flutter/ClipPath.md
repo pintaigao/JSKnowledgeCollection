@@ -67,5 +67,5 @@ class ArcClipper extends CustomClipper<Path> {
 
 显示出来的效果会是这样的
 
-<center>![](https://github.com/hptg1994/JSKnowledgeCollection/blob/master/Flutter/resource/ClipPathImg.png)</center>
+![](https://github.com/hptg1994/JSKnowledgeCollection/blob/master/Flutter/resource/ClipPathImg.png)
 
