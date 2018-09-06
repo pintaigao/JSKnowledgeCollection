@@ -39,11 +39,6 @@ class ArcClipper extends CustomClipper<Path> {
 
     var firstControlPoint = new Offset(size.width / 4, size.height);
     var firstPoint = new Offset(size.width/2 , size.height);
-
-    print(firstControlPoint.dx);
-    print(firstControlPoint.dy);
-    print(firstPoint.dx);
-    print(firstPoint.dy);
     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
         firstPoint.dx, firstPoint.dy);
 
@@ -68,3 +63,7 @@ class ArcClipper extends CustomClipper<Path> {
 显示出来的效果会是这样的, 有一条弧度
 
 <img src = "https://github.com/hptg1994/JSKnowledgeCollection/blob/master/Flutter/resource/ClipPathImg.png"  height = "400px" />
+
+### 原理
+
+先lineTo curve的起点（左下角），通过两个offset，第一个为经过的点（屏幕中间偏左），第二个为到达的点（屏幕中间），然后通过quadraticBezierTo（到达的x，到达的y，经过的x，经过的y），就把原点和屏幕中间那一点的连线curved了，现在原点会到达屏幕中间，继续干之前的事（中间和右边的点之间curved），大功告成
