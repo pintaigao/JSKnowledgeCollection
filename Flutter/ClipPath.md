@@ -10,7 +10,7 @@ ClipPath(
         		gradient: new LinearGradient(
                 	colors: UIData.kitGradients,
               	)
-			),
+	     ),
          ),
          showIcon ? new Center(
              child: SizedBox(
@@ -20,9 +20,8 @@ ClipPath(
                 	colors: Colors.yellow,
                  )),
              ) : new Container( 
-					width: double.infinity, 
-                	child: image != null ? Image.network( image, fit: BoxFit.cover,):
-					new Container())
+	     		width: double.infinity, 
+                	child: image != null ? Image.network( image, fit: BoxFit.cover,):new Container())
           ],
         ),
       ),
@@ -44,8 +43,7 @@ class ArcClipper extends CustomClipper<Path> {
     print(firstControlPoint.dy);
     print(firstPoint.dx);
     print(firstPoint.dy);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstPoint.dx, firstPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,firstPoint.dx, firstPoint.dy);
 
     var secondControlPoint = new Offset(size.width - (size.width / 4), size.height);
     var secondPoint = new Offset(size.width, size.height - 30);
