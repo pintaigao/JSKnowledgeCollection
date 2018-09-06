@@ -65,6 +65,6 @@ class ArcClipper extends CustomClipper<Path> {
 
 ```
 
-显示出来的效果会是这样的
+显示出来的效果会是这样的, 有一条弧度
 
-<img src = "https://github.com/hptg1994/JSKnowledgeCollection/blob/master/Flutter/resource/ClipPathImg.png"  height = "300px" />
+<img src = "https://github.com/hptg1994/JSKnowledgeCollection/blob/master/Flutter/resource/ClipPathImg.png"  height = "400px" />
