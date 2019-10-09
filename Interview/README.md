@@ -11,3 +11,6 @@ https://www.indeed.com/hire/interview-questions/front-end-developer
 
 https://www.keycdn.com/blog/front-end-optimization (如何优化前端call)
 
+
+
+如何实现typehead ：
