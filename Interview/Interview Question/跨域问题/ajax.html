@@ -1,0 +1,31 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <button id="btn"> click</button>
+</body>
+
+<script>
+    let btn = document.getElementById('btn');
+    btn.onclick = function () {
+        let ajax = new XMLHttpRequest();
+        ajax.open('GET', "http://localhost:8080/a", true);
+        // If "POST", inside send should add body
+        ajax.send();
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState === 4) {
+                if (ajax.status >= 200 && ajax.status < 300 || ajax.status == 304) {
+                    alert("成功");
+                    let json = JSON.parse(ajax.responseText);
+                    console.log(json);
+                } else {
+                    alert('失败');
+                }
+            }
+        }
+    };
+</script>
+
+</html>
