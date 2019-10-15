@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <!-- 找的是socket.io库的socket.io.js -->
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io.connect("ws://localhost:8080/");
+        // socket.emit("AAA",12);
+        socket.on("timer", function (timer) {
+            console.log(timer);
+        });
+            // socket.emit
+            // socket.on
+    </script>
+</head>
+
+</html>

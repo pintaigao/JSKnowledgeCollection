@@ -1,0 +1,15 @@
+<html>
+
+<head>
+    <script>
+        let ws = new WebSocket('ws://localhost:8080/');
+        ws.onopen = function () {
+            alert("连接建立");
+        };
+        ws.onmessage = function () { };
+        ws.onclose = function () { };
+        ws.onerror = function () { };
+    </script>
+</head>
+
+</html>

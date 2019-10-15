@@ -73,3 +73,31 @@ let promise3 = new Promise((resolve, reject) => {
 // });
 
 /* 4. 原型继承链prototype*/
+
+/* 5. Implement a Promise */
+
+/* 6. This 的用法 */
+
+/* 7. for of 和 for in 的区别 */
+let array7 = [3, 2, 5, 2, 3, 1, 8, 5];
+/* for (let index in array7) {
+    console.log(index);
+}
+
+for (let element of array7) {
+    console.log(element);
+} */
+
+let obj = { "1key": 11, "2key": 22, "3key": 33 }
+
+for (let key in obj) {
+    console.log(key);
+}
+
+for (let [key, value] of Object.entries(obj)) {
+    console.log(key, value);
+}
+
+for (let index in Object.entries(obj)) {
+    console.log(index);
+}
