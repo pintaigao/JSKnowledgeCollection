@@ -43,13 +43,13 @@ let findNodesWithZeroAndOneParents = function (pairs) {
     }
 
     console.log(result);
-    
+
     return result;
 }
 
 // findNodesWithZeroAndOneParents([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [8, 10]]);
-findNodesWithZeroAndOneParents([[1, 4], [1, 5], [2, 5], [3, 6], [6, 7]]);
-console.log("下一题");
+// findNodesWithZeroAndOneParents([[1, 4], [1, 5], [2, 5], [3, 6], [6, 7]]);
+// console.log("下一题");
 
 
 /* 或者根本就不用Set，直接一个Map就搞定了 */
@@ -110,12 +110,7 @@ let hasCommonAncestor = function (pairs, a, b) {
 }
 
 // console.log(hasCommonAncestor([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [8, 10]], 3, 6));
-console.log(hasCommonAncestor([[1, 4], [1, 5], [2, 5], [3, 6], [6, 7]], 3, 6));
-
-
-
-
-
+// console.log(hasCommonAncestor([[1, 4], [1, 5], [2, 5], [3, 6], [6, 7]], 3, 6));
 
 /*
 For example, in this diagram, 3 is a child of 1 and 2, and 5 is a child of 4
@@ -131,15 +126,42 @@ findEarliestAncestor(parentChildPairs, 6) => 11
 findEarliestAncestor(parentChildPairs, 1) => null or -1
 */
 
-// Private void highestparent(Map < Integer, List < Integer >> map, int a, int[] p, int step) {
-//     List < Integer > next = map.get(a);
-//     if (step > p[0]) {
-//         p[0] = step;
-//         p[1] = a;
-//     }
-//     If(next != null && next.size() > 0) {
-//         For(int pa: next) {
-//             Highestparent(map, pa, p, step + 1);
-//         }
-//     }
-// }
+function findEarliestAncestor(parentChildPairs, node) {
+
+    let map = {};
+
+    function setUpMap(array) {
+        if (map[array[1]] !== undefined) {
+            map[array[1]].push(array[0]);
+        }
+        else {
+            map[array[1]] = [array[0]]
+        }
+    }
+
+    for (let array of parentChildPairs) {
+        setUpMap(array);
+    }
+
+    let result = -1;
+    let maxStep = Number.MIN_SAFE_INTEGER;
+
+    function highestparent(node, step) {
+        let next = map[node];
+        if (next === undefined && step > maxStep && step !== 0) {
+            result = node;
+            maxStep = step;
+            return;
+        }
+        if (next !== undefined && next.length > 0) {
+            for (let num of next) {
+                highestparent(num, step + 1);
+            }
+        }
+    }
+    highestparent(node, 0);
+    console.log(result);
+    return result;
+};
+
+findEarliestAncestor([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [8, 10], [11, 2]], 10)

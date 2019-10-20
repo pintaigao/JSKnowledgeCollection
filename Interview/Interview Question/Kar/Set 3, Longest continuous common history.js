@@ -57,7 +57,7 @@ var subdomainVisits = function (cpdomains) {
     return result;
 };
 
-console.log(subdomainVisits(["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]));
+// console.log(subdomainVisits(["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]));
 
 /*
 Question 2:
@@ -93,14 +93,14 @@ function longestCommonHistory(user1, user2) {
 
     let result = [];
     console.log(dp);
-    
+
     for (let j = end; j > end - max; j--) {
         result.push(user1[j]);
     }
     console.log(result);
 }
 
-longestCommonHistory(["3234.html"], ["3234.html", "sdhsfjdsh.html", "xys.html", "7hsaa.html"]);
+// longestCommonHistory(["3234.html"], ["3234.html", "sdhsfjdsh.html", "xys.html", "7hsaa.html"]);
 
 /*
 Question3
@@ -151,4 +151,60 @@ were from users who made a purchase.
 
 用几个map来回倒腾就行。
  */
+
+function checkoutMost(completed_purchase_user_ids, ad_clicks, all_user_ips) {
+    let all_user = {};
+    for (let user of all_user_ips) {
+        let userArray = user.split(",");
+        all_user[userArray[1]] = userArray[0];
+    }
+
+    let ad_map = {}
+    for (let user of ad_clicks) {
+        let userArray = user.split(",");
+        if (ad_map[userArray[2]] !== undefined) {
+            ad_map[userArray[2]].push(all_user[userArray[0]] !== undefined ? all_user[userArray[0]] : "-1");
+        }
+        else {
+            ad_map[userArray[2]] = [all_user[userArray[0]] !== undefined ? all_user[userArray[0]] : "-1"];
+        }
+    }
+    let purchase_userId = new Set(completed_purchase_user_ids);
+    // console.log(all_user);
+    // console.log(ad_map);
+    // console.log(purchase_userId);
+
+    // Calculated
+    let finalResult = [];
+    for (let [ad, userIdArray] of Object.entries(ad_map)) {
+        let count = 0;
+        for (let userId of userIdArray) {
+            if (purchase_userId.has(userId)) {
+                count += 1;
+            }
+        }
+        finalResult.push(count + " of " + userIdArray.length + " " + ad);
+    }
+    console.log(finalResult);
+}
+
+let completed_purchase_user_ids = ["3123122444", "234111110", "8321125440", "99911063"]
+let ad_clicks = [
+    "122.121.0.1,2016-11-03 11:41:19,Buy wool coats for your pets",
+    "96.3.199.11,2016-10-15 20:18:31,2017 Pet Mittens",
+    "122.121.0.250,2016-11-01 06:13:13,The Best Hollywood Coats",
+    "82.1.106.8,2016-11-12 23:05:14,Buy wool coats for your pets",
+    "92.130.6.144,2017-01-01 03:18:55,Buy wool coats for your pets",
+    "92.130.6.145,2017-01-01 03:18:55,2017 Pet Mittens",
+];
+let all_user_ips = [
+    "2339985511,122.121.0.155",
+    "234111110,122.121.0.1",
+    "3123122444,92.130.6.145",
+    "39471289472,2001:0db8:ac10:fe01:0000:0000:0000:0000",
+    "8321125440,82.1.106.8",
+    "99911063,92.130.6.144"
+];
+
+checkoutMost(completed_purchase_user_ids, ad_clicks, all_user_ips);
 

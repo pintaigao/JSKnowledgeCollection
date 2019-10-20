@@ -151,11 +151,74 @@ function middleCourse(course) {
 
 }
 
-middleCourse([["Data Structure", "Algorithms"], ["Foundations of Computer Science", "Operating Systems"], ["Computer Networks", "Computer Architecture"], ["Algorithms", "Foundations of Computer Science"], ['Computer Architecture', "Data Structure"], ['Software Design', "Computer Networks"]]);
-middleCourse([["Data Structure", "Algorithms"], ["Algorithms", "Foundations of Computer Science"], ["Foundations of Computer Science", "Logic"]]);
-middleCourse([["1", "2"], ["2", "3"], ["3", "4"]]);
+// middleCourse([["Data Structure", "Algorithms"], ["Foundations of Computer Science", "Operating Systems"], ["Computer Networks", "Computer Architecture"], ["Algorithms", "Foundations of Computer Science"], ['Computer Architecture', "Data Structure"], ['Software Design', "Computer Networks"]]);
+// middleCourse([["Data Structure", "Algorithms"], ["Algorithms", "Foundations of Computer Science"], ["Foundations of Computer Science", "Logic"]]);
+// middleCourse([["1", "2"], ["2", "3"], ["3", "4"]]);
 
 /* 第三题，210. Course Schedule II
 3.输入跟刚刚一样，每个课可能有多个pre和多个follow课程，输出所有n/2的课程
 这题他解释完只有5分钟左右了，所以我就讲了一下思路。
 */
+
+function middleAllCourse(course) {
+  let mapPre = {};
+  let mapAfter = {}
+  course.forEach((item) => {
+    if (mapPre[item[1]] !== undefined) {
+      mapPre[item[1]].push(item[0]);
+    } else {
+      mapPre[item[1]] = [item[0]];
+    }
+    if (mapPre[item[0]] === undefined) {
+      mapPre[item[0]] = [];
+    }
+
+    if (mapAfter[item[0]] !== undefined) {
+      mapAfter[item[0]].push(item[1]);
+    }
+    else {
+      mapAfter[item[0]] = [item[1]];
+    }
+  });
+
+  let headCourse = [];
+  let keySet = Object.keys(mapPre);
+  for (let key of keySet) {
+    if (mapPre[key].length === 0) {
+      headCourse.push(key);
+    }
+  }
+
+  
+  function dfs(preCourse, count) {
+    if (count === midCouresCount) {
+      return preCourse;
+    }
+    for (let course of mapAfter[preCourse]) {
+      return dfs(course, count + 1);
+    }
+  }
+
+  let result = [];
+  for(let course of headCourse) {
+    dfs(beginCourse, 1);
+  }
+  console.log(result);
+  return result;
+  
+}
+
+middleAllCourse(
+  [["Logic", "COBOL"],
+  ["Data Structures", "Algorithms"],
+  ['Creative Writing', "Data Structures"],
+  ["Algorithms", "COBOL"],
+  ["Intro to Computer Science", "Data Structure"],
+  ["Logic", "Compilers"],
+  ["Data Structure", "Logic"],
+  ["Creative Writing", "System Adminstration"],
+  ["Databases", "System Adminstration"],
+  ["Creative Writing", "Databases"]]
+);
+
+
