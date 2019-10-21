@@ -85,6 +85,8 @@ class Trie {
         }
         return false;
     }
+
+    //Helper Function to return true if currentNode does not have any children
     hasNoChildren(currentNode) {
         for (var i = 0; i < currentNode.children.length; i++) {
             if (currentNode.children[i] != null)
@@ -110,7 +112,6 @@ class Trie {
                 currentNode = null;
                 deletedSelf = true;
             }
-
             //If there are nodes ahead of currentNode in this path 
             //Then we cannot delete currentNode. We simply unmark this as leaf
             else {
@@ -121,6 +122,7 @@ class Trie {
         else {
             let childNode = currentNode.children[this.getIndex(key[level])];
             let childDeleted = this.deleteHelper(key, childNode, length, level + 1);
+            console.log(childDeleted);
             if (childDeleted) {
                 //Making children pointer also None: since child is deleted
                 currentNode.children[this.getIndex(key[level])] = null;
@@ -165,7 +167,6 @@ let t = new Trie();
 // console.log("Keys to insert: ");
 // console.log(keys);
 
-
 //Construct Trie
 for (var i = 0; i < keys.length; i++) {
     t.insert(keys[i], i);
@@ -191,3 +192,20 @@ if (t.search("th") == true)
     console.log("th --- " + output[1]);
 else
     console.log("th --- " + output[0]);
+
+t.delete("a");
+console.log("Deleted key \"a\"");
+
+if (t.search("abc") == true)
+    console.log("abc --- " + output[1]);
+else
+    console.log("abc --- " + output[0]);
+
+
+// t.delete("abc");
+// console.log("Deleted key \"abc\"");
+
+// if (t.search("abc") == true)
+//     console.log("abc --- " + output[1]);
+// else
+//     console.log("abc --- " + output[0]);
