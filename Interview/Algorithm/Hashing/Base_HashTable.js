@@ -24,7 +24,7 @@ class HashTable {
     //Constructor
     constructor() {
         //Size of the HashTable
-        this.slots = 1;
+        this.slots = 10;
         //Current entries in the table
         //Used while resizing the table when half of the table gets filled
         this.size = 0;
