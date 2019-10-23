@@ -103,8 +103,12 @@ class HashTable {
     deleteVal(key) {
         //Find index
         let b_Index = this.getIndex(key);
-        
         let head = this.bucket[b_Index];
+        //If key does not exist
+        if (head == null) {
+            console.log("Key not found");
+            return null;
+        }
         //If key exists at first slot
         if (head.key == key) {
             this.bucket[b_Index] = head.next;
@@ -126,7 +130,7 @@ class HashTable {
             prev = head;
             head = head.next;
         }
-        //If key does not exist
+        // If loop through but still not found the key
         console.log("Key not found");
         return null;
     }
@@ -188,6 +192,7 @@ console.log("Table Size: " + String(table.get_size()));
 console.log("The value for 'is' key: " + String(table.search("is")));
 table.deleteVal("is");
 table.deleteVal("a");
+table.deleteVal("a4");
 console.log("Table Size: " + String(table.get_size()));
 
 
