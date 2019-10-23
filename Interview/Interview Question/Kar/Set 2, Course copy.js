@@ -57,9 +57,10 @@ function find_pairs(pairs) {
   let map = {}
   for (let i = 0; i < pairs.length; i++) {
     if (map[pairs[i][0]] !== undefined) {
-      map[pairs[i][0]].push(pairs[i][1]);
+      map[pairs[i][0]].add(pairs[i][1]);
     } else {
-      map[pairs[i][0]] = [pairs[i][1]];
+      map[pairs[i][0]] = new Set();
+      map[pairs[i][0]].add(pairs[i][1])
     }
   }
 
@@ -71,9 +72,12 @@ function find_pairs(pairs) {
   for (let i = 0; i < keySet.length; i++) {
     for (let j = i + 1; j < keySet.length; j++) {
       let pair = keySet[i] + "," + keySet[j];
-      let tempResult = map[keySet[i]].filter(course => {
-        return map[keySet[j]].indexOf(course) !== -1;
-      });
+      let tempResult = [];
+      for (let course of map[keySet[i]]) {
+        if (map[keySet[j]].has(course)) {
+          tempResult.push(course)
+        }
+      }
 
       result[pair] = tempResult.slice();
     }
@@ -82,20 +86,18 @@ function find_pairs(pairs) {
   return result;
 }
 
-// find_pairs([
-//   ["58", "Software Design"],
-//   ["58", "Linear Algebra"],
-//   ["94", "Art History"],
-//   ["94", "Operating Systems"],
-//   ["17", "Software Design"],
-//   ["58", "Mechanics"],
-//   ["58", "Economics"],
-//   ["17", "Linear Algebra"],
-//   ["17", "Political Science"],
-//   ["94", "Economics"],
-//   ["25", "Economics"],
+// find_pairs([["58", "Software Design"],
+// ["58", "Linear Algebra"],
+// ["94", "Art History"],
+// ["94", "Operating Systems"],
+// ["17", "Software Design"],
+// ["58", "Mechanics"],
+// ["58", "Economics"],
+// ["17", "Linear Algebra"],
+// ["17", "Political Science"],
+// ["94", "Economics"],
+// ["25", "Economics"],
 // ]);
-
 
 /*
 告诉你a是b的先修课，b是c的先修课，问你mid course是啥。并且条件是，只有一种修下来课的顺序，这里是 a -> b ->c
@@ -103,65 +105,8 @@ function find_pairs(pairs) {
 input 是 [(course1, course2), (course3, course4), (course2, course3)] ==> course2
 207. Course Schedule
 */
-function middleCourse(course) {
-  let mapPre = {};
-  let mapAfter = {}
-  course.forEach((item) => {
-    if (mapPre[item[1]] !== undefined) {
-      mapPre[item[1]].push(item[0]);
-    } else {
-      mapPre[item[1]] = [item[0]];
-    }
-    if (mapPre[item[0]] === undefined) {
-      mapPre[item[0]] = [];
-    }
-
-    if (mapAfter[item[0]] !== undefined) {
-      mapAfter[item[0]].push(item[1]);
-    }
-    else {
-      mapAfter[item[0]] = [item[1]];
-    }
-  });
-
-  // find the one without prerequest course
-  let keySet = Object.keys(mapPre);
-  // console.log(keySet);
-
-  let beginCourse = '';
-  let midCouresCount = Math.ceil(keySet.length / 2);
-  for (let key of keySet) {
-    if (mapPre[key].length === 0) {
-      beginCourse = key;
-    }
-  }
-
-  console.log(mapAfter);
 
 
-  function dfs(preCourse, count) {
-    if (count === midCouresCount) {
-      return preCourse;
-    }
-    for (let course of mapAfter[preCourse]) {
-      return dfs(course, count + 1);
-    }
-  }
-
-  let result = dfs(beginCourse, 1);
-  // console.log(result);
-  return result;
-
-}
-
-// middleCourse([["Data Structure", "Algorithms"], ["Foundations of Computer Science", "Operating Systems"], ["Computer Networks", "Computer Architecture"], ["Algorithms", "Foundations of Computer Science"], ['Computer Architecture', "Data Structure"], ['Software Design', "Computer Networks"]]);
-// middleCourse([["Data Structure", "Algorithms"], ["Algorithms", "Foundations of Computer Science"], ["Foundations of Computer Science", "Logic"]]);
-// middleCourse([["1", "2"], ["2", "3"], ["3", "4"]]);
-
-/* 第三题，210. Course Schedule II
-3.输入跟刚刚一样，每个课可能有多个pre和多个follow课程，输出所有n/2的课程
-这题他解释完只有5分钟左右了，所以我就讲了一下思路。
-*/
 
 function middleAllCourse(course) {
   let mapPre = {};
@@ -184,8 +129,11 @@ function middleAllCourse(course) {
     }
   });
 
+  console.log(mapPre);
+  console.log(mapAfter);
+  
+
   let headCourse = [];
-  let roadMaps = [];
   let keySet = Object.keys(mapPre);
   for (let key of keySet) {
     if (mapPre[key].length === 0) {
@@ -193,39 +141,23 @@ function middleAllCourse(course) {
     }
   }
 
-
-  console.log(mapAfter);
-
-
-  let result = new Set();
-
-  function dfs(preCourse, path) {
-    if (mapAfter[preCourse] === undefined) {
-      roadMaps.push(path.slice());
-      return;
+  
+  function dfs(preCourse, count) {
+    if (count === midCouresCount) {
+      return preCourse;
     }
     for (let course of mapAfter[preCourse]) {
-      path.push(course)
-      dfs(course, path);
-      path.pop(course);
+      return dfs(course, count + 1);
     }
   }
 
-
-  for (let course of headCourse) {
-    dfs(course, [course]);
-  }
-
-  for (let roadMap of roadMaps) {
-    result.add(roadMap[Math.floor((roadMap.length + 1) / 2) - 1]);
-  }
-  console.log(roadMaps);
-
-  console.log(result);
-
-
-  return result;
-
+  // let result = [];
+  // for(let course of headCourse) {
+  //   dfs(beginCourse, 1);
+  // }
+  // console.log(result);
+  // return result;
+  
 }
 
 middleAllCourse(
@@ -233,12 +165,10 @@ middleAllCourse(
   ["Data Structures", "Algorithms"],
   ['Creative Writing', "Data Structures"],
   ["Algorithms", "COBOL"],
-  ["Intro to Computer Science", "Data Structures"],
+  ["Intro to Computer Science", "Data Structure"],
   ["Logic", "Compilers"],
-  ["Data Structures", "Logic"],
+  ["Data Structure", "Logic"],
   ["Creative Writing", "System Adminstration"],
   ["Databases", "System Adminstration"],
   ["Creative Writing", "Databases"]]
 );
-
-

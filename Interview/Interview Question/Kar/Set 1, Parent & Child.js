@@ -137,18 +137,25 @@ function findEarliestAncestor(parentChildPairs, node) {
         else {
             map[array[1]] = [array[0]]
         }
+
+        if (map[array[0]] === undefined) {
+            map[array[0]] = [];
+        }
     }
+
 
     for (let array of parentChildPairs) {
         setUpMap(array);
     }
+    console.log(map);
 
     let result = -1;
-    let maxStep = Number.MIN_SAFE_INTEGER;
+    let maxStep = 0;
 
     function highestparent(node, step) {
         let next = map[node];
-        if (next === undefined && step > maxStep && step !== 0) {
+        console.log(next);
+        if (next.length === 0 && step > maxStep && step !== 0) {
             result = node;
             maxStep = step;
             return;
@@ -164,4 +171,4 @@ function findEarliestAncestor(parentChildPairs, node) {
     return result;
 };
 
-findEarliestAncestor([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [8, 10], [11, 2]], 10)
+findEarliestAncestor([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [8, 10], [11, 2]], 7)
