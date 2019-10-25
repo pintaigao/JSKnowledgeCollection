@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="details.css">
+    <title>Details</title>
+</head>
+
+<body>
+    <div class="carousal-modal display-none" id="carousal-modal">
+        <div class="carousal-modal-container">
+            <button class="carousal-left" id="carousal-left">◀︎</button>
+            <div class="carousal-image-container">
+                <img id="carousal-image" />
+            </div>
+            <button class="carousal-right" id="carousal-right">►</button>
+        </div>
+        <div class="carousal-image-group" id="carousal-image-group">
+        </div>
+    </div>
+
+    <div class="detail-container" id='itemDetail'>
+        <div class="detail-container-left">
+            <div class="detail-img-container">
+                <img class="detail-img-hero" id="detail-img-hero" />
+                <div class="detail-img-group" id="detail-img-group">
+                </div>
+            </div>
+        </div>
+        <div class="detail-info-container">
+            <div class="detail-item-info" id="detail-item-info">
+                <h1>itemName</h1>
+                <p>$ itemPrice</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="details.js">
+</script>
+
+</html>

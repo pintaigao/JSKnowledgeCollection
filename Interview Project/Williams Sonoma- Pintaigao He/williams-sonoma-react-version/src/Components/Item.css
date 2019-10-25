@@ -1,0 +1,40 @@
+.item-container {
+    position: relative;
+    display: inline-block;
+    transition: 0.5s;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.item-container:hover {
+    box-shadow: 0px 0px 20px lightgrey;
+    transition: 0.5s;
+}
+
+.item-container-image {
+    position: relative;
+    display: inline-block;
+}
+
+.item-container-price {
+    position: absolute;
+    bottom: 20px;
+    padding: 10px 20px;
+    left: 0px;
+    background-color: white;
+}
+
+.item-container-price p {
+    margin: 0px;
+    font-weight: 500;
+}
+
+.item-name {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.item-name p {
+    /* margin: 0px; */
+    margin-left: 10px;
+}

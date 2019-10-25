@@ -1,0 +1,34 @@
+.main-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-top: 30px;
+}
+
+.link {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    width: calc(100% / 3);
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+@media (max-width:1129px) {
+    .link {
+        width: 50%;
+    }
+}
+
+@media (max-width:745px) {
+    .link {
+        display: flex;
+        text-decoration: none;
+        color: black;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}

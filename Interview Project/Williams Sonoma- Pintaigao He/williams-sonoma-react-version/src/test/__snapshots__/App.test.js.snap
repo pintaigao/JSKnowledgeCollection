@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render DetailPage correctly 1`] = `ShallowWrapper {}`;
+
+exports[`should render DetailPage correctly 2`] = `ShallowWrapper {}`;
+
+exports[`should render DetailPage correctly 3`] = `ShallowWrapper {}`;
+
+exports[`should render MainPage correctly 1`] = `ShallowWrapper {}`;
