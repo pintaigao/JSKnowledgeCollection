@@ -1,23 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import HOOKS from './HOOKS/hooks';
+import Basic from './HighOrderComponent/BasicClass';
+import PictureLoader from './Components/Picture-Loader';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Hooks</h1>
+        <HOOKS />
+        <h1>Basic</h1>
+        <Basic />
+        <h1>Picture Loader</h1>
+        <PictureLoader />
       </header>
     </div>
   );

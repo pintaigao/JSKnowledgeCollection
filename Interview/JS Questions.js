@@ -90,7 +90,7 @@ for (let element of array7) {
 
 let obj = { "1key": 11, "2key": 22, "3key": 33 }
 
-for (let key in obj) {
+/* for (let key in obj) {
     console.log(key);
 }
 
@@ -100,4 +100,32 @@ for (let [key, value] of Object.entries(obj)) {
 
 for (let index in Object.entries(obj)) {
     console.log(index);
+} */
+
+/* 8. Decentralize */
+let objDe = { 'a': "a1", "b": "b1" }
+let { a, b } = objDe;
+// console.log(a, b);
+
+/* 9. Hook Simulation */
+// const hook = (function () {
+//     let val;
+//     return {
+//         render(Component) {
+//             const Comp = Component();
+//             Comp.render();
+//             return Comp;
+//         },
+//         useState(init) {
+//             val = val || init;
+//             function setState(newVal) {
+//                 val = newVal;
+//             }
+//             return [val, setState];
+//         }
+//     }
+// })();
+
+function useState() {
+
 }
