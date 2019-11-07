@@ -8,10 +8,10 @@ let allowOrigin = {
     "null": true
 }
 http.createServer((req, res) => {
-    console.log(req.headers);
+    // console.log(req.headers);
+    console.log(req.method);
     // req: 前端的请求的原网址, headers, 前发过来的请求头
     let { origin } = req.headers;
-    console.log(origin);
     if (allowOrigin[origin]) {
         // 发送响应（response）的时候，要声明（响应头），header还给浏览器让浏览器知道这是同一个域名下的，浏览器就不会阻止文件了
         res.setHeader('Access-Control-Allow-Origin', origin);

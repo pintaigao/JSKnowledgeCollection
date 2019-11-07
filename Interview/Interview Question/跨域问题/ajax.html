@@ -11,7 +11,7 @@
     let btn = document.getElementById('btn');
     btn.onclick = function () {
         let ajax = new XMLHttpRequest();
-        ajax.open('GET', "http://localhost:8080/a", true);
+        ajax.open('POST', "http://localhost:8080/a", true);
         // If "POST", inside send should add body
         ajax.send();
         ajax.onreadystatechange = function () {
