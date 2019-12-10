@@ -1,5 +1,4 @@
 function solution(map) {
-    let direction = [[1, 0], [-1, 0], [0, 1], [0, -1], [-1, -1], [1, 1], [-1, 1], [1, -1]]
     let result = [];
     let directions = [[-1, 0], [1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]];
     for (let i = 0; i < map.length; i++) {
@@ -33,8 +32,33 @@ function solution(map) {
 }
 
 
-let map = [[1, 0, 0, 1, 0], [1, 0, 1, 0, 0], [0, 0, 1, 0, 1], [1, 0, 1, 0, 1]]
+let map = [[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 0, 1, 0], [1, 1, 1, 1, 1]]
 solution(map);
 
 
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function (n) {
+    let result = [];
 
+    function dfs(current, left, right) {
+        if (current.length == 2 * n) {
+            result.push(current);
+            return;
+        }
+        if (left < n) {
+            dfs(current.concat("("), left + 1, right);
+        }
+        if (left > right) {
+            dfs(current.concat(")"), left, right + 1);
+        }
+    }
+
+    dfs("", 0, 0)
+    console.log(result);
+    return result;
+};
+
+generateParenthesis(3);

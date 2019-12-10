@@ -7,11 +7,15 @@ class Basic extends React.Component {
             "firstName": "Pintaigao",
             'lastName': "He"
         }
+        this.content = "";
     }
 
     changeState() {
+        console.log(this.content);
         this.setState({ "lastName2": "SSS" });
+        this.content = "Some things"
         console.log(this.state);
+        console.log(this.content);
     }
 
     render() {
