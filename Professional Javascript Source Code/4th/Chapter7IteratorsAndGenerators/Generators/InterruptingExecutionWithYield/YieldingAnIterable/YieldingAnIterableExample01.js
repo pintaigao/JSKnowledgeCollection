@@ -15,5 +15,5 @@ for (const x of generatorFn()) {
 }
 // 1
 // 2
-// 3 
-YieldingIterableExample01.js
+// 3
+YieldingIterableExample01.js;

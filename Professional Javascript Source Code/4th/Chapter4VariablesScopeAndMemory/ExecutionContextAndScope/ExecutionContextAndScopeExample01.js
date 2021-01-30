@@ -1,5 +1,5 @@
 var color = "blue";
-           
+
 function changeColor() {
   if (color === "blue") {
     color = "red";
@@ -7,5 +7,6 @@ function changeColor() {
     color = "blue";
   }
 }
-           
+
 changeColor();
+console.log(color);

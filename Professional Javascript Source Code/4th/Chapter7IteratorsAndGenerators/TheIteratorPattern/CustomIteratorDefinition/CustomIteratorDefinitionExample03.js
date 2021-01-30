@@ -5,7 +5,7 @@ class Counter {
 
   [Symbol.iterator]() {
     let count = 1,
-        limit = this.limit;
+      limit = this.limit;
     return {
       next() {
         if (count <= limit) {
@@ -13,19 +13,22 @@ class Counter {
         } else {
           return { done: true, value: undefined };
         }
-      }
+      },
     };
   }
 }
 
 let counter = new Counter(3);
 
-for (let i of counter) { console.log(i); }
+for (let i of counter) {
+  console.log(i);
+}
 // 1
 // 2
 // 3
-for (let i of counter) { console.log(i); }
+for (let i of counter) {
+  console.log(i);
+}
 // 1
 // 2
 // 3
-CustomIteratorDefinitionExample02.js

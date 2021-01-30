@@ -26,4 +26,3 @@ for (let i of counter) {
 // 1
 // 2
 // 3
-CustomIteratorDefinitionExample01.js
